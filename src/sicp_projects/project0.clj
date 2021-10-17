@@ -16,7 +16,7 @@
 
 (defn bitfunc-integral-recur [num-steps x1 x2]
   (if (= num-steps 1)
-    (bitfunc-rect x1 x2)
+    (double (bitfunc-rect x1 x2))
     (let [step (/ (- x2 x1) num-steps)
           p1 (+ x1 step)]
       (+ (bitfunc-rect x1 p1) (bitfunc-integral-recur (dec num-steps) p1 x2)))))
@@ -27,7 +27,7 @@
          num-steps num-steps
          area 0]
     (if (= num-steps 1)
-      (+ area (bitfunc-rect p1 p2))
+      (double (+ area (bitfunc-rect p1 p2)))
       (let [step (/ (- p2 p1) num-steps)
             ps (+ p1 step)]
         (recur ps 2 (dec num-steps) (+ area (bitfunc-rect p1 ps)))))))
